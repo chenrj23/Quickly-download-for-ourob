@@ -1,8 +1,8 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 0.2.1,
 
   "name": "Quickly download for ourob",
-  "description": "Shen shi web station quickly download",
+  "description": " quickly download and pre show images",
   "version": "1.0",
   "permissions": [ "cookies", "http://www.ourob.cn/*"],
   "background": {
@@ -11,7 +11,7 @@
   "content_scripts": [
     {
       "matches": ["http://www.ourob.cn/bbs/forum.php?mod=forumdisplay&fid=*", "http://www.ourob.cn/bbs/xbt/btindex_v2_3_can.php*"],
-       "js": ["jquery-2.1.4.js", "myscript.js"]
+       "js": ["jquery-2.1.4.js","config.js", "tr.js", "myscript.js"]
     }
   ]
 }
