@@ -2,10 +2,13 @@
 
 ### 结构
 
-- myscript.js  算入口文件，对dom操作主要放这
-- tr.js        定义了tr类
-- config.js    分析每个帖子的规则
-- background.js 解决每次请求后cookie问题
+> myscript.js     算入口文件，对dom操作主要放这
+
+> tr.js           定义了tr类
+ 
+> config.js       分析每个帖子的规则
+ 
+> background.js   解决每次请求后cookie问题
 
 
 ### 现存问题：
