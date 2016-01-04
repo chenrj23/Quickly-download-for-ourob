@@ -3,7 +3,7 @@
 $('[id^="normalthread"] > tr').each(function(index, element) {    
   var OBTr = new tr(element);
   OBTr.init();
-  OBTr.analysisAjax(function(OBTr) { 
+  OBTr.analysisAjax(function() { 
     if (0 in OBTr.downloadUrl){
       OBTr.addButton()
           .append(`<a href="${OBTr.downloadUrl[0]}">Quickly download</a>`);      
@@ -25,4 +25,3 @@ $('[id^="normalthread"] > tr').each(function(index, element) {
   });                                                                                                                   // 最近活动时间： OBTr.torrrentStates[4] 
 });                                                                                                              
                                   
-                                    

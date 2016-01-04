@@ -20,36 +20,27 @@ tr.prototype.getHref = function() {
 
 tr.prototype.analysisAjax = function(callback){
   let OBTr = this;
-  try{
-    $.get(OBTr.href, 'text').done(function(data){
-      data = $('div[id^="post_"] > table:first > tbody > tr:first', data).html();
-      for(let ReName in ReConfigs){
-        let ReNameConfig = ReConfigs[ReName]
-        if (ReNameConfig.Unique) {
-          var unique =  new Set(data.match(ReNameConfig.Re));
-          OBTr[ReName] = [...unique];
-        }else{
-          OBTr[ReName] = data.match(ReNameConfig.Re)
-        }
-      }
-      callback(OBTr)
-    })  
-  }
-  catch(e){
-    console.log(OBTr)
-  }
+  $.get(OBTr.href, 'text').done(function(data){
+    OBTr.downloadUrl = data.match(ReConfigs.downloadUrl.Re);
+    OBTr.torrrentStates = data.match(ReConfigs.torrrentStates.Re);
+    //去重
+    OBTr.imageUrls = new Set(data.match(ReConfigs.imageUrls.Re));
+    //转数组  
+    OBTr.imageUrls = [...OBTr.imageUrls]      
+    return callback()
+  })  
 }
 
-tr.prototype.addButton = function() {           
-  $('th', this.node).append('<button type="button"></button>');
-  var addedButton = $(':button:last', this.node);
-  this.buttons.push(addedButton);
+tr.prototype.addButton = function() {  
+  let addedButton = $('<button type="button"></button>').appendTo($('th', this.node))
+  this.buttons.push(addedButton);         
   return addedButton
 };
 
 tr.prototype.addImagesHidden = function() {
   for (var imageUrl of this.imageUrls) {                  
     $(this.node).after(`<img src ="${imageUrl}" hidden = "hidden" ></img>`);
+    // this.images = $(`<img src ="${imageUrl}" hidden = "hidden" ></img>`).insertAfter($(this.node)))
   }
   return this.images = $('img:hidden', this.node.parentNode) 
 };
